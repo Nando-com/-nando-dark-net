@@ -7,151 +7,148 @@
 <title>NANDO DARK NET 2.0</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#080d0a;color:white;
- font-family:Arial,sans-serif
-}
-header{
- background:#101b14;padding:20px;
- border-bottom:1px solid #1e6638;
- display:flex;justify-content:space-between;
- align-items:center
-}
-.logo{color:#35ef78;font-size:22px;font-weight:bold}
-.menu{display:flex;gap:8px;flex-wrap:wrap;padding:15px}
-button{
- background:#17251b;color:#35ef78;
- border:1px solid #28683d;padding:12px;
- border-radius:8px;cursor:pointer
-}
+body{margin:0;background:#080d0a;color:white;font-family:Arial}
+header{padding:20px;background:#101b14;border-bottom:1px solid #28683d}
+.logo{font-size:22px;color:#35ef78;font-weight:bold}
+nav{display:flex;flex-wrap:wrap;gap:8px;padding:15px}
+button{background:#17251b;color:#35ef78;border:1px solid #28683d;padding:12px;border-radius:8px;cursor:pointer}
 button:hover{background:#235333}
 main{padding:18px}
-h2{color:#35ef78}
-.grid{
- display:grid;grid-template-columns:repeat(2,1fr);
- gap:12px
-}
-.card{
- background:#111c15;padding:18px;
- border:1px solid #234b30;
- border-radius:12px
-}
-.card h3{color:#35ef78}
-.panel{
- background:#111c15;padding:18px;
- border-radius:12px;margin-top:18px
-}
-input{
- background:#17251b;color:white;
- padding:12px;border:1px solid #28683d;
- border-radius:8px;max-width:100%
-}
-a{color:#35ef78;text-decoration:none}
+h2,h3{color:#35ef78}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:#111c15;padding:15px;border:1px solid #234b30;border-radius:12px}
+.card img{width:100%;height:115px;object-fit:cover;border-radius:8px}
+.card a{display:block;margin-top:12px;text-decoration:none}
+input{width:100%;padding:13px;background:#17251b;color:white;border:1px solid #28683d;border-radius:8px}
+.panel{background:#111c15;padding:18px;border-radius:12px;margin-top:18px}
+a{color:#35ef78}
 footer{text-align:center;padding:25px;color:#82958a}
 section{margin-bottom:25px}
-@media(max-width:400px){
- .grid{grid-template-columns:1fr}
-}
+[hidden]{display:none!important}
+@media(max-width:400px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <header>
- <div class="logo">NANDO DARK NET</div>
- <span>2.0 🟢</span>
+<div class="logo">NANDO DARK NET</div>
+<p>YOUR DIGITAL WORLD | 2.0</p>
 </header>
 
-<nav class="menu">
- <button onclick="show('home')">Início</button>
- <button onclick="show('files')">Ficheiros</button>
- <button onclick="show('games')">Jogos</button>
- <button onclick="show('downloads')">Downloads</button>
- <button onclick="show('admin')">Admin</button>
+<nav>
+<button onclick="show('home')">Início</button>
+<button onclick="show('games')">Jogos</button>
+<button onclick="show('files')">Ficheiros</button>
+<button onclick="show('downloads')">Downloads</button>
+<button onclick="show('admin')">Admin</button>
 </nav>
 
 <main>
 
 <section id="home">
- <h2>PAINEL GERAL</h2>
- <p>Bem-vindo ao NANDO DARK NET 2.0.</p>
- <div class="grid">
-  <div class="card">
-   <h3>📁 Ficheiros</h3>
-   <p>Área de ficheiros</p>
-  </div>
-  <div class="card">
-   <h3>🎮 Jogos</h3>
-   <p>Área de jogos</p>
-  </div>
-  <div class="card">
-   <h3>⬇ Downloads</h3>
-   <p>Centro de downloads</p>
-  </div>
-  <div class="card">
-   <h3>⚙️ Sistema</h3>
-   <p>Configurações gerais</p>
-  </div>
- </div>
-</section>
-
-<section id="files" hidden>
- <h2>GESTÃO DE FICHEIROS</h2>
- <div class="panel">
-  <p>Selecionar ficheiro:</p>
-  <input type="file" id="file">
-  <p id="fileinfo">Nenhum ficheiro selecionado.</p>
- </div>
+<h2>PAINEL GERAL</h2>
+<p>Bem-vindo ao NANDO DARK NET 2.0!</p>
+<div class="grid">
+<div class="card"><h3>🎮 Jogos</h3><button onclick="show('games')">Abrir jogos</button></div>
+<div class="card"><h3>📁 Ficheiros</h3><button onclick="show('files')">Abrir ficheiros</button></div>
+<div class="card"><h3>⬇ Downloads</h3><button onclick="show('downloads')">Abrir downloads</button></div>
+<div class="card"><h3>⚙️ Sistema</h3><button onclick="show('admin')">Configurações</button></div>
+</div>
 </section>
 
 <section id="games" hidden>
- <h2>ÁREA DE JOGOS</h2>
- <div class="card">
-  <h3>🎮 Biblioteca de jogos</h3>
-  <p>Em breve: jogos disponíveis no portal.</p>
- </div>
+<h2>🎮 BIBLIOTECA DE JOGOS</h2>
+<p>Encontra os teus jogos favoritos.</p>
+<input id="search" placeholder="Pesquisar jogos..." oninput="filterGames()">
+<br><br>
+
+<div class="grid" id="gameList">
+
+<div class="card">
+<img src="https://placehold.co/400x220/14271b/35ef78?text=FREE+FIRE">
+<h3>Free Fire</h3>
+<p>Jogo de ação e sobrevivência.</p>
+<a href="https://play.google.com/store/search?q=Free%20Fire&c=apps" target="_blank"><button>Ver na Play Store</button></a>
+</div>
+
+<div class="card">
+<img src="https://placehold.co/400x220/14271b/35ef78?text=EFOOTBALL">
+<h3>eFootball</h3>
+<p>Jogo de futebol.</p>
+<a href="https://play.google.com/store/search?q=eFootball&c=apps" target="_blank"><button>Ver na Play Store</button></a>
+</div>
+
+<div class="card">
+<img src="https://placehold.co/400x220/14271b/35ef78?text=ROBLOX">
+<h3>Roblox</h3>
+<p>Jogos e experiências variadas.</p>
+<a href="https://play.google.com/store/search?q=Roblox&c=apps" target="_blank"><button>Ver na Play Store</button></a>
+</div>
+
+<div class="card">
+<img src="https://placehold.co/400x220/14271b/35ef78?text=MINECRAFT">
+<h3>Minecraft</h3>
+<p>Aventura e construção.</p>
+<a href="https://play.google.com/store/search?q=Minecraft&c=apps" target="_blank"><button>Ver na Play Store</button></a>
+</div>
+
+</div>
+<p id="noResults" hidden>Nenhum jogo encontrado.</p>
+</section>
+
+<section id="files" hidden>
+<h2>📁 FICHEIROS</h2>
+<div class="panel">
+<input type="file" id="file">
+<p id="fileinfo">Nenhum ficheiro selecionado.</p>
+</div>
 </section>
 
 <section id="downloads" hidden>
- <h2>CENTRO DE DOWNLOADS</h2>
- <div class="card">
-  <p>Os ficheiros publicados aparecerão aqui.</p>
- </div>
+<h2>⬇ DOWNLOADS</h2>
+<p>Os downloads publicados aparecerão aqui.</p>
 </section>
 
 <section id="admin" hidden>
- <h2>ADMINISTRAÇÃO</h2>
- <div class="panel">
-  <p>Configurações do NANDO DARK NET.</p>
-  <p>Estado: <span style="color:#35ef78">Interface ativa</span></p>
-  <p>Armazenamento: Supabase (por configurar)</p>
- </div>
+<h2>⚙️ ADMINISTRAÇÃO</h2>
+<div class="panel">
+<p>NANDO DARK NET 2.0</p>
+<p>Interface ativa.</p>
+<p>Storage: por configurar.</p>
+</div>
 </section>
 
 <div class="panel">
- <h3>CONTACTAR ADMINISTRADOR</h3>
- <a href="https://wa.me/258861861972">
-  <button>CONTACTAR PELO WHATSAPP</button>
- </a>
+<h3>CONTACTAR ADMINISTRADOR</h3>
+<a href="https://wa.me/258861861972">
+<button>CONTACTAR PELO WHATSAPP</button>
+</a>
 </div>
 
 </main>
 
-<footer>
- NANDO DARK NET 2.0 © 2026
-</footer>
+<footer>NANDO DARK NET 2.0 © 2026</footer>
 
 <script>
 function show(id){
- document.querySelectorAll('main section').forEach(s=>{
-  s.hidden=true;
- });
- document.getElementById(id).hidden=false;
+document.querySelectorAll('main section').forEach(s=>s.hidden=true);
+document.getElementById(id).hidden=false;
+}
+function filterGames(){
+let q=document.getElementById('search').value.toLowerCase();
+let cards=document.querySelectorAll('#gameList .card');
+let count=0;
+cards.forEach(card=>{
+let visible=card.innerText.toLowerCase().includes(q);
+card.hidden=!visible;
+if(visible)count++;
+});
+document.getElementById('noResults').hidden=count!==0;
 }
 document.getElementById('file').addEventListener('change',function(){
- document.getElementById('fileinfo').textContent=
- this.files.length ? this.files[0].name : 'Nenhum ficheiro selecionado.';
+document.getElementById('fileinfo').textContent=
+this.files.length?this.files[0].name:'Nenhum ficheiro selecionado.';
 });
 </script>
-
 </body>
 </html>
