@@ -1,7 +1,3 @@
-NÆNDO DÆRK NET — CYBER EDITION 2.0
-
-Cria um ficheiro "index.html" com este código:
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -203,6 +199,51 @@ function assistir(nome){
 }
 
 mostrar();
+</script>
+
+
+<section id="servidores" style="padding:25px;text-align:center">
+<h2 style="color:#00ff66">⚡ SERVIDORES DE REPRODUÇÃO</h2>
+<p>Escolhe um servidor para assistir.</p>
+
+<div class="servidor">
+<h3>SERVER 01</h3>
+<p>Servidor principal</p>
+<button onclick="abrirServidor(1)">ASSISTIR</button>
+</div>
+
+<div class="servidor">
+<h3>SERVER 02</h3>
+<p>Servidor alternativo</p>
+<button onclick="abrirServidor(2)">ASSISTIR</button>
+</div>
+
+<div class="servidor">
+<h3>SERVER 03</h3>
+<p>Vídeos próprios</p>
+<button onclick="abrirServidor(3)">ASSISTIR</button>
+</div>
+
+<p id="avisoServidor"></p>
+</section>
+
+<style>
+.servidor{
+background:#07140c;
+border:1px solid #00ff66;
+border-radius:12px;
+padding:18px;
+margin:15px auto;
+max-width:350px;
+}
+.servidor h3{color:#00ff66}
+</style>
+
+<script>
+function abrirServidor(n){
+document.getElementById("avisoServidor").textContent=
+"Servidor "+n+" ainda aguarda um link de vídeo autorizado.";
+}
 </script>
 
 </body>
