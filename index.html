@@ -1,53 +1,84 @@
+NÆNDO DÆRK NET — CYBER EDITION 2.0
+
+Cria um ficheiro "index.html" com este código:
 
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nando Dark Net | Jogos e Tecnologia</title>
-<meta name="description" content="Nando Dark Net Cyber Edition 2.0 - Jogos, downloads e tecnologia.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://nando-com.github.io/-nando-dark-net/">
+<meta name="theme-color" content="#030805">
+<title>NÆNDO DÆRK NET</title>
 
 <style>
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{
  margin:0;background:#030805;color:white;
- font-family:Arial,sans-serif;text-align:center
+ font-family:Arial,sans-serif;
 }
 header{
- padding:28px 12px;background:#07140b;
- border-bottom:2px solid #25ff65
+ background:#07140c;padding:20px 12px;
+ text-align:center;border-bottom:2px solid #00ff66;
 }
-h1{color:#25ff65;text-shadow:0 0 13px #25ff65}
-header p{color:#b5d8bf}
+header h1{color:#00ff66;margin:0;font-size:25px}
+header p{color:#aaa;font-size:12px}
 nav{
- display:flex;justify-content:center;flex-wrap:wrap;
- gap:18px;padding:17px;background:#0b160e
+ display:flex;justify-content:center;gap:10px;
+ flex-wrap:wrap;padding:15px;
+ background:#050b07;
 }
-a{color:#35ff75;text-decoration:none}
-nav a{font-weight:bold}
-section{padding:30px 14px;max-width:950px;margin:auto}
-h2{color:#35ff75}
-.card{
- background:#0b160e;border:1px solid #25ff65;
- border-radius:15px;padding:20px;margin:15px auto;
- max-width:600px;box-shadow:0 0 12px #092b14
-}
-.card h3{color:#35ff75}
-.card p{color:#c1d5c5;line-height:1.6}
 button{
- background:#12351d;color:#35ff75;
- border:1px solid #25ff65;border-radius:9px;
- padding:13px 20px;font-weight:bold;
- font-size:14px;margin:6px;cursor:pointer
+ background:#00d957;color:#001b09;
+ border:0;padding:11px 15px;
+ border-radius:7px;font-weight:bold;
+ cursor:pointer;
 }
-button:hover{background:#1b542c}
-.tag{color:#25ff65;font-size:12px}
+button:hover{background:#8affad}
+input{
+ width:90%;max-width:500px;
+ padding:14px;border-radius:8px;
+ border:1px solid #00ff66;
+ background:#101a13;color:white;
+ display:block;margin:15px auto;
+}
+h2{
+ color:#00ff66;margin:25px 15px 15px;
+}
+#catalogo{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:13px;padding:12px;
+}
+.card{
+ background:#101a13;border:1px solid #164d2b;
+ border-radius:10px;overflow:hidden;
+}
+.poster{
+ height:155px;display:flex;
+ justify-content:center;align-items:center;
+ flex-direction:column;
+ background:linear-gradient(140deg,#06371c,#020503);
+ color:#00ff66;text-align:center;
+ padding:10px;
+}
+.poster strong{font-size:23px}
+.poster span{font-size:12px;color:white}
+.info{padding:12px}
+.info h3{margin:3px 0 8px;font-size:16px}
+.info p{font-size:12px;color:#bbb;min-height:30px}
+.info button{width:100%;font-size:12px}
+.tag{
+ color:#00ff66;font-size:11px;
+ margin-bottom:8px;display:block;
+}
 footer{
- padding:25px;border-top:1px solid #25ff65;
- color:#9ab6a0;margin-top:25px
+ text-align:center;padding:25px;
+ color:#888;font-size:12px;
+ border-top:1px solid #164d2b;
+}
+@media(min-width:700px){
+ #catalogo{grid-template-columns:repeat(4,1fr)}
+ .poster{height:220px}
 }
 </style>
 </head>
@@ -56,114 +87,123 @@ footer{
 
 <header>
 <h1>NÆNDO DÆRK NET</h1>
-<p>CYBER EDITION 2.0</p>
-<p>🎮 JOGOS • TECNOLOGIA • ENTRETENIMENTO</p>
+<p>CYBER EDITION 2.0 | ANIME & SERIES</p>
 </header>
 
 <nav>
-<a href="#inicio">INÍCIO</a>
-<a href="#jogos">JOGOS</a>
-<a href="#recargas">RECARGAS</a>
-<a href="#downloads">DOWNLOADS</a>
-<a href="#contacto">CONTACTO</a>
+<button onclick="filtrar('Todos')">INÍCIO</button>
+<button onclick="filtrar('Anime')">ANIMES</button>
+<button onclick="filtrar('Série')">SÉRIES</button>
 </nav>
 
-<section id="inicio">
-<h2>BEM-VINDO AO NANDO DARK NET</h2>
-<p>Entra no mundo dos jogos e da tecnologia!</p>
-</section>
+<input id="pesquisa"
+placeholder="🔎 Pesquisar anime ou série..."
+oninput="mostrar()">
 
-<section id="jogos">
-<h2>🎮 BIBLIOTECA DE JOGOS</h2>
-
-<div class="card">
-<h3>⚽ eFootball</h3>
-<p>Futebol, equipas e competição.</p>
-<span class="tag">JOGO MOBILE</span><br><br>
-<a href="https://www.konami.com/efootball/" target="_blank" rel="noopener">
-<button>VISITAR SITE OFICIAL</button>
-</a>
-</div>
-
-<div class="card">
-<h3>🔥 FREE FIRE</h3>
-<p>Entra no campo de batalha e joga com os teus amigos.</p>
-<span class="tag">JOGO MOBILE</span><br><br>
-<a href="https://ff.garena.com/" target="_blank" rel="noopener">
-<button>VISITAR SITE OFICIAL</button>
-</a>
-</div>
-
-<div class="card">
-<h3>🎯 PUBG MOBILE</h3>
-<p>Descobre o universo PUBG Mobile.</p>
-<span class="tag">JOGO MOBILE</span><br><br>
-<a href="https://www.pubgmobile.com/" target="_blank" rel="noopener">
-<button>VISITAR SITE OFICIAL</button>
-</a>
-</div>
-
-<div class="card">
-<h3>🧱 ROBLOX</h3>
-<p>Explora experiências e jogos criados pela comunidade.</p>
-<span class="tag">JOGO ONLINE</span><br><br>
-<a href="https://www.roblox.com/" target="_blank" rel="noopener">
-<button>ABRIR ROBLOX</button>
-</a>
-</div>
-
-<div class="card">
-<h3>🏎️ NÆNDO CYBER RACING</h3>
-<p>O nosso jogo de corrida cyber!</p>
-<span class="tag">JOGA NO NAVEGADOR</span><br><br>
-<a href="jogo.html"><button>JOGAR AGORA</button></a>
-</div>
-</section>
-
-<section id="recargas">
-<h2>💎 RECARGAS E MOEDAS</h2>
-
-<div class="card">
-<h3>💎 Diamantes Free Fire</h3>
-<p>Consulta as opções oficiais de recarga disponíveis para a tua região.</p>
-<a href="https://ff.garena.com/" target="_blank" rel="noopener">
-<button>CONSULTAR FREE FIRE</button>
-</a>
-</div>
-
-<div class="card">
-<h3>🪙 Moedas eFootball</h3>
-<p>Consulta as opções de moedas e compras dentro do jogo.</p>
-<a href="https://www.konami.com/efootball/" target="_blank" rel="noopener">
-<button>CONSULTAR eFOOTBALL</button>
-</a>
-</div>
-
-<p>Usa apenas canais oficiais ou autorizados. Nunca partilhes a tua palavra-passe ou códigos de acesso.</p>
-</section>
-
-<section id="downloads">
-<h2>📥 DOWNLOADS</h2>
-<div class="card">
-<h3>Área de aplicações</h3>
-<p>Em breve, mais conteúdos e aplicações.</p>
-</div>
-</section>
-
-<section id="contacto">
-<h2>📞 CONTACTO</h2>
-<div class="card">
-<p>Fala connosco pelo WhatsApp.</p>
-<a href="https://wa.me/258861861972" target="_blank" rel="noopener">
-<button>CONTACTAR PELO WHATSAPP</button>
-</a>
-</div>
-</section>
+<h2>🔥 CATÁLOGO</h2>
+<div id="catalogo"></div>
 
 <footer>
-<p>© 2026 NÆNDO DÆRK NET</p>
-<p>CYBER EDITION 2.0</p>
+<p> NÆNDO DÆRK NET © 2026</p>
+<p>Entretenimento digital | Fontes oficiais</p>
 </footer>
+
+<script>
+const conteudos = [
+{
+ nome:"Naruto",
+ tipo:"Anime",
+ descricao:"Aventura, ninjas e amizade.",
+ letra:"N",
+ cor:"#163e23"
+},
+{
+ nome:"One Piece",
+ tipo:"Anime",
+ descricao:"Uma grande aventura pelos mares.",
+ letra:"OP",
+ cor:"#17364a"
+},
+{
+ nome:"Demon Slayer",
+ tipo:"Anime",
+ descricao:"Fantasia e aventura.",
+ letra:"DS",
+ cor:"#482323"
+},
+{
+ nome:"Pokémon",
+ tipo:"Anime",
+ descricao:"Aventura no mundo Pokémon.",
+ letra:"P",
+ cor:"#584319"
+},
+{
+ nome:"Stranger Things",
+ tipo:"Série",
+ descricao:"Mistério e aventura.",
+ letra:"ST",
+ cor:"#431b29"
+},
+{
+ nome:"Wednesday",
+ tipo:"Série",
+ descricao:"Mistério e investigação.",
+ letra:"W",
+ cor:"#29233e"
+}
+];
+
+let categoria="Todos";
+
+function filtrar(tipo){
+ categoria=tipo;
+ mostrar();
+}
+
+function mostrar(){
+ const termo=document.getElementById("pesquisa")
+ .value.toLowerCase();
+
+ const lista=conteudos.filter(item=>{
+ return (categoria==="Todos" || item.tipo===categoria)
+ && item.nome.toLowerCase().includes(termo);
+ });
+
+ document.getElementById("catalogo").innerHTML=
+ lista.map(item=>`
+ <div class="card">
+ <div class="poster"
+ style="background:linear-gradient(140deg,${item.cor},#020503)">
+ <strong>${item.letra}</strong>
+ <span>${item.nome}</span>
+ </div>
+ <div class="info">
+ <span class="tag">${item.tipo}</span>
+ <h3>${item.nome}</h3>
+ <p>${item.descricao}</p>
+ <button onclick="assistir('${encodeURIComponent(item.nome)}')">
+ PROCURAR ONDE ASSISTIR
+ </button>
+ </div>
+ </div>
+ `).join("");
+
+ if(!lista.length){
+ document.getElementById("catalogo").innerHTML=
+ "<p>Não foram encontrados resultados.</p>";
+ }
+}
+
+function assistir(nome){
+ const titulo=decodeURIComponent(nome);
+ const url="https://www.google.com/search?q="+
+ encodeURIComponent(titulo+" assistir dublado plataforma oficial");
+ window.open(url,"_blank");
+}
+
+mostrar();
+</script>
 
 </body>
 </html>
