@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NANDO DARK NET 2.0</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080d0a;color:white;
+ font-family:Arial,sans-serif
+}
+header{
+ background:#101b14;padding:20px;
+ border-bottom:1px solid #1e6638;
+ display:flex;justify-content:space-between;
+ align-items:center
+}
+.logo{color:#35ef78;font-size:22px;font-weight:bold}
+.menu{display:flex;gap:8px;flex-wrap:wrap;padding:15px}
+button{
+ background:#17251b;color:#35ef78;
+ border:1px solid #28683d;padding:12px;
+ border-radius:8px;cursor:pointer
+}
+button:hover{background:#235333}
+main{padding:18px}
+h2{color:#35ef78}
+.grid{
+ display:grid;grid-template-columns:repeat(2,1fr);
+ gap:12px
+}
+.card{
+ background:#111c15;padding:18px;
+ border:1px solid #234b30;
+ border-radius:12px
+}
+.card h3{color:#35ef78}
+.panel{
+ background:#111c15;padding:18px;
+ border-radius:12px;margin-top:18px
+}
+input{
+ background:#17251b;color:white;
+ padding:12px;border:1px solid #28683d;
+ border-radius:8px;max-width:100%
+}
+a{color:#35ef78;text-decoration:none}
+footer{text-align:center;padding:25px;color:#82958a}
+section{margin-bottom:25px}
+@media(max-width:400px){
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">NANDO DARK NET</div>
+ <span>2.0 🟢</span>
+</header>
+
+<nav class="menu">
+ <button onclick="show('home')">Início</button>
+ <button onclick="show('files')">Ficheiros</button>
+ <button onclick="show('games')">Jogos</button>
+ <button onclick="show('downloads')">Downloads</button>
+ <button onclick="show('admin')">Admin</button>
+</nav>
+
+<main>
+
+<section id="home">
+ <h2>PAINEL GERAL</h2>
+ <p>Bem-vindo ao NANDO DARK NET 2.0.</p>
+ <div class="grid">
+  <div class="card">
+   <h3>📁 Ficheiros</h3>
+   <p>Área de ficheiros</p>
+  </div>
+  <div class="card">
+   <h3>🎮 Jogos</h3>
+   <p>Área de jogos</p>
+  </div>
+  <div class="card">
+   <h3>⬇ Downloads</h3>
+   <p>Centro de downloads</p>
+  </div>
+  <div class="card">
+   <h3>⚙️ Sistema</h3>
+   <p>Configurações gerais</p>
+  </div>
+ </div>
+</section>
+
+<section id="files" hidden>
+ <h2>GESTÃO DE FICHEIROS</h2>
+ <div class="panel">
+  <p>Selecionar ficheiro:</p>
+  <input type="file" id="file">
+  <p id="fileinfo">Nenhum ficheiro selecionado.</p>
+ </div>
+</section>
+
+<section id="games" hidden>
+ <h2>ÁREA DE JOGOS</h2>
+ <div class="card">
+  <h3>🎮 Biblioteca de jogos</h3>
+  <p>Em breve: jogos disponíveis no portal.</p>
+ </div>
+</section>
+
+<section id="downloads" hidden>
+ <h2>CENTRO DE DOWNLOADS</h2>
+ <div class="card">
+  <p>Os ficheiros publicados aparecerão aqui.</p>
+ </div>
+</section>
+
+<section id="admin" hidden>
+ <h2>ADMINISTRAÇÃO</h2>
+ <div class="panel">
+  <p>Configurações do NANDO DARK NET.</p>
+  <p>Estado: <span style="color:#35ef78">Interface ativa</span></p>
+  <p>Armazenamento: Supabase (por configurar)</p>
+ </div>
+</section>
+
+<div class="panel">
+ <h3>CONTACTAR ADMINISTRADOR</h3>
+ <a href="https://wa.me/258861861972">
+  <button>CONTACTAR PELO WHATSAPP</button>
+ </a>
+</div>
+
+</main>
+
+<footer>
+ NANDO DARK NET 2.0 © 2026
+</footer>
+
+<script>
+function show(id){
+ document.querySelectorAll('main section').forEach(s=>{
+  s.hidden=true;
+ });
+ document.getElementById(id).hidden=false;
+}
+document.getElementById('file').addEventListener('change',function(){
+ document.getElementById('fileinfo').textContent=
+ this.files.length ? this.files[0].name : 'Nenhum ficheiro selecionado.';
+});
+</script>
+
+</body>
+</html>
