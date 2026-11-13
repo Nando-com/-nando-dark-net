@@ -1,0 +1,232 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>NÆNDO CYBER RACING</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#030805;color:#fff;
+ font-family:Arial;text-align:center;
+}
+header{padding:18px;color:#25ff65;border-bottom:1px solid #25ff65}
+h1{font-size:25px;text-shadow:0 0 12px #25ff65}
+p{color:#b5d8bf}
+.game{
+ max-width:430px;margin:15px auto;padding:10px;
+}
+canvas{
+ width:100%;height:auto;background:#101710;
+ border:2px solid #25ff65;border-radius:12px;
+ display:block;touch-action:none;
+}
+.score{color:#25ff65;font-size:20px;font-weight:bold;padding:12px}
+button{
+ background:#102c19;color:#38ff75;
+ border:1px solid #25ff65;border-radius:9px;
+ padding:14px 22px;font-weight:bold;font-size:16px;
+ margin:6px;touch-action:none;
+}
+.controls{display:flex;justify-content:center;gap:25px}
+.info{font-size:12px;color:#9eb8a4}
+a{color:#25ff65}
+</style>
+</head>
+<body>
+
+<header>
+ <h1>NÆNDO CYBER RACING</h1>
+ <p>CYBER EDITION 2.0</p>
+</header>
+
+<div class="game">
+ <div class="score">PONTOS: <span id="score">0</span></div>
+ <canvas id="game" width="360" height="540"></canvas>
+ <div>
+  <button id="start">▶ COMEÇAR</button>
+ </div>
+ <div class="controls">
+  <button id="left">⬅ ESQUERDA</button>
+  <button id="right">DIREITA ➡</button>
+ </div>
+ <p class="info">Desvia dos obstáculos e tenta alcançar a maior pontuação!</p>
+ <p><a href="index.html">← VOLTAR AO SITE</a></p>
+</div>
+
+<script>
+const canvas=document.getElementById("game");
+const ctx=canvas.getContext("2d");
+const scoreText=document.getElementById("score");
+
+let car={x:160,y:440,w:36,h:58};
+let obstacles=[];
+let score=0;
+let speed=3;
+let running=false;
+let gameOver=false;
+let left=false,right=false;
+let frame=0;
+let animation;
+
+function drawRoad(){
+ ctx.fillStyle="#101710";
+ ctx.fillRect(0,0,360,540);
+
+ ctx.fillStyle="#25ff65";
+ ctx.fillRect(48,0,3,540);
+ ctx.fillRect(309,0,3,540);
+
+ ctx.strokeStyle="#52665a";
+ ctx.lineWidth=3;
+ ctx.setLineDash([25,22]);
+ ctx.lineDashOffset=-frame*speed;
+ ctx.beginPath();
+ ctx.moveTo(180,0);
+ ctx.lineTo(180,540);
+ ctx.stroke();
+ ctx.setLineDash([]);
+}
+
+function drawCar(){
+ ctx.fillStyle="#25ff65";
+ ctx.fillRect(car.x+5,car.y,car.w-10,car.h);
+ ctx.fillStyle="#baffce";
+ ctx.fillRect(car.x+10,car.y+10,16,15);
+ ctx.fillStyle="#07130a";
+ ctx.fillRect(car.x+9,car.y+34,18,12);
+ ctx.fillStyle="#fff";
+ ctx.fillRect(car.x+2,car.y+8,5,10);
+ ctx.fillRect(car.x+29,car.y+8,5,10);
+}
+
+function drawObstacles(){
+ obstacles.forEach(o=>{
+  ctx.fillStyle="#ff5252";
+  ctx.fillRect(o.x,o.y,o.w,o.h);
+  ctx.fillStyle="#fff";
+  ctx.fillRect(o.x+6,o.y+8,o.w-12,8);
+ });
+}
+
+function addObstacle(){
+ const lanes=[85,162,239];
+ const x=lanes[Math.floor(Math.random()*lanes.length)];
+ obstacles.push({x:x,y:-65,w:36,h:55});
+}
+
+function collision(a,b){
+ return a.x < b.x+b.w-5 &&
+ a.x+a.w > b.x+5 &&
+ a.y < b.y+b.h-5 &&
+ a.y+a.h > b.y+5;
+}
+
+function draw(){
+ drawRoad();
+ drawObstacles();
+ drawCar();
+}
+
+function endGame(){
+ running=false;
+ gameOver=true;
+ draw();
+ ctx.fillStyle="rgba(0,0,0,.8)";
+ ctx.fillRect(0,190,360,150);
+ ctx.fillStyle="#25ff65";
+ ctx.font="bold 28px Arial";
+ ctx.textAlign="center";
+ ctx.fillText("FIM DO JOGO",180,245);
+ ctx.font="18px Arial";
+ ctx.fillStyle="white";
+ ctx.fillText("Pontos: "+score,180,280);
+ ctx.font="13px Arial";
+ ctx.fillText("Carrega em COMEÇAR para tentar outra vez",180,310);
+}
+
+function loop(){
+ if(!running)return;
+ frame++;
+
+ if(left)car.x-=5;
+ if(right)car.x+=5;
+ car.x=Math.max(55,Math.min(269,car.x));
+
+ if(frame%65===0)addObstacle();
+
+ obstacles.forEach(o=>o.y+=speed);
+ obstacles=obstacles.filter(o=>o.y<560);
+
+ for(const o of obstacles){
+  if(collision(car,o)){endGame();return;}
+  if(!o.counted && o.y>car.y+car.h){
+   o.counted=true;
+   score++;
+   scoreText.textContent=score;
+   speed=Math.min(7,3+score*.08);
+  }
+ }
+
+ draw();
+ animation=requestAnimationFrame(loop);
+}
+
+function startGame(){
+ cancelAnimationFrame(animation);
+ car.x=160;
+ obstacles=[];
+ score=0;
+ speed=3;
+ frame=0;
+ scoreText.textContent="0";
+ gameOver=false;
+ running=true;
+ draw();
+ loop();
+}
+
+document.getElementById("start").onclick=startGame;
+
+function hold(button,direction){
+ button.addEventListener("pointerdown",e=>{
+  e.preventDefault();
+  if(direction==="left")left=true;
+  else right=true;
+ });
+ ["pointerup","pointerleave","pointercancel"].forEach(event=>{
+  button.addEventListener(event,()=>{
+   if(direction==="left")left=false;
+   else right=false;
+  });
+ });
+}
+
+hold(document.getElementById("left"),"left");
+hold(document.getElementById("right"),"right");
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="ArrowLeft"||e.key==="a")left=true;
+ if(e.key==="ArrowRight"||e.key==="d")right=true;
+});
+document.addEventListener("keyup",e=>{
+ if(e.key==="ArrowLeft"||e.key==="a")left=false;
+ if(e.key==="ArrowRight"||e.key==="d")right=false;
+});
+
+draw();
+</script>
+</body>
+</html>
