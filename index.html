@@ -23,7 +23,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#030805">
-<title>NÆNDO DÆRK NET</title>
+<title>NANDO DARK NET</title>
 
 <style>
 *{box-sizing:border-box}
@@ -101,7 +101,7 @@ footer{
 <body>
 
 <header>
-<h1>NÆNDO DÆRK NET</h1>
+<h1>NANDO DARK NET</h1>
 <p>CYBER EDITION 2.0 | ANIME & SERIES</p>
 </header>
 
@@ -119,7 +119,7 @@ oninput="mostrar()">
 <div id="catalogo"></div>
 
 <footer>
-<p> NÆNDO DÆRK NET © 2026</p>
+<p> NANDO DARK NET © 2026</p>
 <p>Entretenimento digital | Fontes oficiais</p>
 </footer>
 
@@ -265,5 +265,35 @@ document.getElementById("avisoServidor").textContent=
 }
 </script>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
+  import { getStorage } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-storage.js";
+  import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBUcbC50fGO1d6X-lIwPOxNqt7L-9zuAI8",
+    authDomain: "nando-dark-net.firebaseapp.com",
+    projectId: "nando-dark-net",
+    storageBucket: "nando-dark-net.firebasestorage.app",
+    messagingSenderId: "1030807412986",
+    appId: "1:1030807412986:web:edca12b6febc051e4e2943",
+    measurementId: "G-YLTD3YPGDN"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+isSupported().then((supported) => {
+  if (supported) {
+    getAnalytics(app);
+    console.log("Google Analytics ativado!");
+  }
+});
+
+  console.log("NANDO DARK NET ligado ao Firebase!");
+</script>
 </body>
 </html>
