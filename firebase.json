@@ -1,0 +1,24 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "hosting": {
+    "site": "nando-dark-net",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "**/.*",
+      "**/node_modules/**",
+      "firebase-debug.log",
+      "firestore.rules",
+      "index-backup.txt",
+      "index-backup-completo.html",
+      "index-seguranca.html",
+      "index-backup-definicoes.html",
+      "index-backup-painel.html",
+      "index-backup-jogos.html",
+      "arquivos-privados/**"
+    ]
+  }
+}
