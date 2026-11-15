@@ -109,15 +109,99 @@ footer{
 <button onclick="filtrar('Todos')">INÍCIO</button>
 <button onclick="filtrar('Anime')">ANIMES</button>
 <button onclick="filtrar('Série')">SÉRIES</button>
+<button onclick="abrirDefinicoes()">⚙️ DEFINIÇÕES</button>
 </nav>
 
+<section id="definicoes" style="display:none;padding:20px;text-align:center">
+  <h2>⚙️ DEFINIÇÕES</h2>
+  <button id="botaoAdmin" style="display:none"
+    onclick="abrirPainelAdmin()">👑 PAINEL DE ADMINISTRAÇÃO</button>
+  <p>Configurações do NÆNDO DÆRK NET</p>
+</section>
 <input id="pesquisa"
 placeholder="🔎 Pesquisar anime ou série..."
 oninput="mostrar()">
 
 <h2>🔥 CATÁLOGO</h2>
 <div id="catalogo"></div>
+<section id="jogos-recargas">
+  <h2>🎮 JOGOS E RECARGAS</h2>
 
+  <div class="jogos-grid">
+<div class="jogo">
+  <img src="capas-jogos/free-fire.png"
+       alt="Capa Free Fire"
+       class="capa-jogo">
+
+  <h3>🔥 Free Fire</h3>
+  <p>Recarga de diamantes</p>
+
+  <input id="idFreeFire"
+         placeholder="ID do jogador">
+
+  <button onclick="pedirRecarga('Free Fire')">
+    PEDIR RECARGA
+  </button>
+</div>
+
+    <div class="jogo">🎯 PUBG Mobile</div>
+    <div class="jogo">⚔️ Mobile Legends</div>
+    <div class="jogo">🎮 Call of Duty Mobile</div>
+    <div class="jogo">✨ Genshin Impact</div>
+    <div class="jogo">🚀 Honkai: Star Rail</div>
+    <div class="jogo">🧱 Roblox</div>
+    <div class="jogo">⚽ eFootball</div>
+    <div class="jogo">🏰 Clash of Clans</div>
+    <div class="jogo">👑 Clash Royale</div>
+    <div class="jogo">⚽ FC Mobile</div>
+    <div class="jogo">🎯 Arena Breakout</div>
+  </div>
+
+  <h2>💳 MÉTODOS DE PAGAMENTO</h2>
+  <p>M-Pesa | E-Mola</p>
+  <p>WhatsApp: +258 861 861 972</p>
+  <p>O pagamento será confirmado pelo administrador.</p>
+</section>
+
+<style>
+#jogos-recargas {
+  padding: 20px;
+  text-align: center;
+  color: #00ff66;
+  background: #080808;
+}
+.jogos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+  gap: 12px;
+}
+.jogo {
+  border: 1px solid #00ff66;
+  border-radius: 10px;
+  padding: 15px;
+  background: #111;
+}
+.capa-jogo {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #00ff66;
+  box-shadow: 0 0 15px #00ff66;
+  margin-bottom: 12px;
+}
+.capa-jogo {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #00ff66;
+  box-shadow: 0 0 15px #00ff66;
+  margin-bottom: 12px;
+}
+</style>
 <footer>
 <p> NANDO DARK NET © 2026</p>
 <p>Entretenimento digital | Fontes oficiais</p>
@@ -294,6 +378,159 @@ isSupported().then((supported) => {
 });
 
   console.log("NANDO DARK NET ligado ao Firebase!");
+</script>
+<script type="module">
+import { getApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
+
+const auth = getAuth(getApp());
+
+window.registar = async () => {
+  try {
+    await createUserWithEmailAndPassword(
+      auth,
+      document.getElementById("email").value,
+      document.getElementById("senha").value
+    );
+  } catch(e) {
+    document.getElementById("estadoConta").textContent = e.message;
+  }
+};
+
+window.entrar = async () => {
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      document.getElementById("email").value,
+      document.getElementById("senha").value
+    );
+  } catch(e) {
+    document.getElementById("estadoConta").textContent = e.message;
+  }
+};
+
+window.sair = () => signOut(auth);
+
+onAuthStateChanged(auth, user => {
+  document.getElementById("estadoConta").textContent =
+    user ? "Sessão iniciada: " + user.email : "Sessão encerrada";
+
+  if(user) {
+    console.log("UID:", user.uid);
+  }
+});
+</script>
+<a class="whatsapp-float"
+href="https://wa.me/258861861972"
+target="_blank"
+rel="noopener noreferrer">
+  ☎ CONTACTAR PELO WHATSAPP
+</a>
+
+<style>
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  z-index: 9999;
+  background: #00d957;
+  color: #001b09;
+  padding: 14px 17px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid #8affad;
+  box-shadow: 0 0 15px #00ff66;
+  font-size: 13px;
+}
+</style>
+
+<section id="painelAdmin" style="display:none;padding:25px;background:#101010;color:#00ff66;border:1px solid #00ff66;border-radius:12px;margin:20px">
+  <h2>👑 PAINEL DE ADMINISTRADOR</h2>
+  <p>Bem-vindo ao painel NÆNDO DÆRK NET</p>
+
+  <input id="novoTitulo" placeholder="Nome do anime ou série">
+  <select id="tipoConteudo">
+    <option value="animes">Anime</option>
+    <option value="series">Série</option>
+  </select>
+
+  <input id="novaCapa" placeholder="Link da capa">
+  <button onclick="publicarConteudo()">PUBLICAR</button>
+  <p id="mensagemAdmin"></p>
+</section>
+<script type="module">
+import { getApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
+
+const auth = getAuth(getApp());
+const db = getFirestore(getApp());
+
+const UID_ADMIN = "CBaKBhPTQOfTLRPoTs69r0ykiGS2";
+
+onAuthStateChanged(auth, user => {
+  const botaoAdmin = document.getElementById("botaoAdmin");
+  const painel = document.getElementById("painelAdmin");
+
+  const autorizado = !!user && user.uid === UID_ADMIN;
+
+  botaoAdmin.style.display = autorizado ? "inline-block" : "none";
+  painel.style.display = "none";
+});
+
+window.abrirDefinicoes = () => {
+  document.getElementById("definicoes").style.display = "block";
+  document.getElementById("painelAdmin").style.display = "none";
+};
+
+window.abrirPainelAdmin = () => {
+  if (!auth.currentUser || auth.currentUser.uid !== UID_ADMIN) {
+    alert("Acesso não autorizado!");
+    return;
+  }
+
+  document.getElementById("definicoes").style.display = "none";
+  document.getElementById("painelAdmin").style.display = "block";
+};
+window.publicarConteudo = async () => {
+  const user = auth.currentUser;
+  const titulo = document.getElementById("novoTitulo").value.trim();
+  const tipo = document.getElementById("tipoConteudo").value;
+  const capa = document.getElementById("novaCapa").value.trim();
+  const mensagem = document.getElementById("mensagemAdmin");
+
+  if (!user || user.uid !== UID_ADMIN) {
+    mensagem.textContent = "Acesso não autorizado.";
+    return;
+  }
+
+  if (!titulo || !capa) {
+    mensagem.textContent = "Preenche o título e o link da capa.";
+    return;
+  }
+  try {
+    await addDoc(collection(db, tipo), {
+      titulo,
+      capa,
+      publicado: true,
+      criadoEm: new Date()
+    });
+
+    mensagem.textContent = "Publicado com sucesso!";
+    document.getElementById("novoTitulo").value = "";
+    document.getElementById("novaCapa").value = "";
+  } catch (erro) {
+    mensagem.textContent = "Erro ao publicar: " + erro.message;
+  }
+};
 </script>
 </body>
 </html>
